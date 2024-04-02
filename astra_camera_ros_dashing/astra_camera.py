@@ -7,7 +7,7 @@ import numpy as np
 from copy import copy
 
 from geometry_msgs.msg import Twist
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import Image, CameraInfo
 
 from openni import openni2
 from openni import _openni2 as c_api
@@ -20,10 +20,21 @@ class ArucoNode(Node):
         super().__init__('Depth_Node')
         self.depth_pub = self.create_publisher(Image, '/astra_camera/depth', 10)
         self.image_pub = self.create_publisher(Image, '/astra_camera/image_raw', 10)
+        self.info_pub = self.create_publisher(CameraInfo, '/astra_camera/camera_info', 10)
 
         timer_period = 0.01  # seconds
+        info_timer_period = 1  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.info_timer = self.create_timer(info_timer_period, self.info_timer_callback)
 
+    def info_timer_callback(self):
+        camera_info = CameraInfo()
+        camera_info.height = 480
+        camera_info.width = 640
+        camera_info.distortion_model = "plumb_bob"
+        camera_info.header.frame_id = "astra_camera"
+        camera_info.header.stamp = self.get_clock().now().to_msg()
+        self.info_pub.publish(camera_info)
 
     def timer_callback(self):
         # Initialize the depth device
@@ -54,12 +65,12 @@ class ArucoNode(Node):
 
             image_result = Image()
             bridge = CvBridge()
-            image_result = bridge.cv2_to_imgmsg(image, encoding="CV_8UC3")
+            image_result = bridge.cv2_to_imgmsg(image, encoding="passthrough")
             self.image_pub.publish(image_result)
 
             depth_result = Image()
             bridge2 = CvBridge()
-            depth_result = bridge2.cv2_to_imgmsg(depth_img, encoding="CV_8UC1")
+            depth_result = bridge2.cv2_to_imgmsg(depth_img, encoding="passthrough")
             self.depth_pub.publish(depth_result)
 
 
