@@ -22,19 +22,22 @@ class ArucoNode(Node):
         self.image_pub = self.create_publisher(Image, '/astra_camera/image_raw', 10)
         self.info_pub = self.create_publisher(CameraInfo, '/astra_camera/camera_info', 10)
 
-        timer_period = 0.01  # seconds
-        info_timer_period = 1  # seconds
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.info_timer = self.create_timer(info_timer_period, self.info_timer_callback)
+        self.timer_period = 0.01  # seconds
+#        info_timer_period = 1.0  # seconds
+        self.timer = self.create_timer(self.timer_period, self.timer_callback)
+#        self.info_timer = self.create_timer(info_timer_period, self.info_timer_callback)
+#        print('a')
 
-    def info_timer_callback(self):
-        camera_info = CameraInfo()
-        camera_info.height = 480
-        camera_info.width = 640
-        camera_info.distortion_model = "plumb_bob"
-        camera_info.header.frame_id = "astra_camera"
-        camera_info.header.stamp = self.get_clock().now().to_msg()
-        self.info_pub.publish(camera_info)
+
+#    def info_timer_callback(self):
+#        camera_info = CameraInfo()
+#        camera_info.height = 480
+#        camera_info.width = 640
+#        camera_info.distortion_model = "plumb_bob"
+#        camera_info.header.frame_id = "astra_camera"
+#        camera_info.header.stamp = self.get_clock().now().to_msg()
+#        print(camera_info)
+#        self.info_pub.publish(camera_info)
 
     def timer_callback(self):
         # Initialize the depth device
@@ -50,6 +53,18 @@ class ArucoNode(Node):
         depth_stream = dev.create_depth_stream()
         depth_stream.start()
         depth_stream.set_video_mode(c_api.OniVideoMode(pixelFormat = c_api.OniPixelFormat.ONI_PIXEL_FORMAT_DEPTH_100_UM, resolutionX = 640, resolutionY = 480, fps = 30))
+
+        camera_info = CameraInfo()
+        camera_info.height = 480
+        camera_info.width = 640
+        camera_info.distortion_model = "plumb_bob"
+        camera_info.header.frame_id = "astra_camera"
+#        camera_info.header.stamp = self.get_clock().now().to_msg()
+#        print(camera_info)
+#        self.info_pub.publish(camera_info)
+
+        freq = 1 / self.timer_period
+        counter = 0
 
         while rclpy.ok():
             color = colour_stream.read_frame()
@@ -72,6 +87,12 @@ class ArucoNode(Node):
             bridge2 = CvBridge()
             depth_result = bridge2.cv2_to_imgmsg(depth_img, encoding="passthrough")
             self.depth_pub.publish(depth_result)
+
+            if True or counter % freq == 0:
+                camera_info.header.stamp = self.get_clock().now().to_msg()
+                self.info_pub.publish(camera_info)
+
+            counter += 1
 
 
 def main(args=None):
