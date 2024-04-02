@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/leev/workspaces/augv_ws/install/regulators_lib/include/**",
+        "/home/leev/workspaces/augv_ws/install/euler_angles_lib/include/**",
+        "/home/leev/workspaces/augv_ws/install/augv_navigation_msgs/include/**",
+        "/home/leev/workspaces/augv_ws/install/astar_planner_msgs/include/**",
+        "/opt/ros/dashing/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,28 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/leev/workspaces/augv_ws/install/simulation_scenarios/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/robot_info/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/pso_exploration/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/group_exploration/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/frontier_pso_exploration/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/autopilot_lite/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/augv_navigation_msgs/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/augv_launches/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/astar_planner/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/astar_planner_msgs/lib/python3.6/site-packages",
+        "/opt/ros/dashing/lib/python3.6/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/leev/workspaces/augv_ws/install/simulation_scenarios/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/robot_info/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/pso_exploration/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/group_exploration/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/frontier_pso_exploration/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/autopilot_lite/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/augv_navigation_msgs/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/augv_launches/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/astar_planner/lib/python3.6/site-packages",
+        "/home/leev/workspaces/augv_ws/install/astar_planner_msgs/lib/python3.6/site-packages",
+        "/opt/ros/dashing/lib/python3.6/site-packages"
+    ]
+}

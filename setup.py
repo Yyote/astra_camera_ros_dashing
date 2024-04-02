@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'Astra_OpenNi'
+package_name = 'astra_camera_ros_dashing'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'astra_detecter = Astra_OpenNi.Astra_OpenNi:main',
+        'astra_node = astra_camera_ros_dashing.astra_camera:main',
         ],
     },
 )
