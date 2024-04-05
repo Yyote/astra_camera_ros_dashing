@@ -32,7 +32,7 @@ Now clone the package into your `src` folder:
 
 ```
 cd /path/to/workspace/src
-git clone https://github.com/Yyote/astra_camera_ros_dashing.git
+git clone https://github.com/Yyote/astra_camera.git
 ```
 
 And then build and source your workspace.
